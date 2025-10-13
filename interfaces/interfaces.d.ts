@@ -1,6 +1,6 @@
 interface Movie {
-  id: number;
-  title: string;
+  imdbID: number;
+  Title: string;
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -13,6 +13,9 @@ interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  Poster: string;
+  Year: string;
+  Runtime:string;
 }
 
 interface TrendingMovie {
