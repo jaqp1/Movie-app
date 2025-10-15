@@ -1,5 +1,5 @@
 interface Movie {
-  imdbID: number;
+  imdbID: number; // id
   Title: string;
   adult: boolean;
   backdrop_path: string;
