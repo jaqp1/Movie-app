@@ -1,7 +1,14 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
-    const [data, setData] = useState<T | null>(null);
+
+type FetchResult<DataType, DetailsType> = {
+  data: DataType;
+  dataDetails: DetailsType;
+};
+
+const useFetch = <DataType, DetailsType>(fetchFunction: () => Promise<FetchResult<DataType, DetailsType>>, autoFetch = true) => {
+    const [data, setData] = useState<DataType | null>(null);
+    const [dataDetails, setDataDetails] = useState<DetailsType | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -13,7 +20,8 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
 
             const result = await fetchFunction();
 
-            setData(result);
+            setData(result.data);
+            setDataDetails(result.dataDetails);
         }
          catch (err) {
             setError(err instanceof Error ? err : new Error('An error occured'));
@@ -24,6 +32,7 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
 
     const reset = () => {
         setData(null);
+        setDataDetails(null)
         setLoading(false);
         setError(null);
     }
@@ -34,7 +43,9 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
         }
     }, []);
 
-    return {data, loading, error, refetch: fetchData, reset};
+    //console.log(dataDetails)
+
+    return {data, dataDetails, loading, error, refetch: fetchData, reset};
 }
 
 export default useFetch;

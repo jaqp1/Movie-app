@@ -11,7 +11,7 @@ export const fetchMovies = async ({ query }: {query: string}) =>    {
 
     const endpoint = query 
     ? `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&s=${encodeURIComponent(query)}`
-    : `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&s=inception`;
+    : `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&s=How`;
 
     const response = await fetch(endpoint, {
         method: 'GET',
@@ -22,10 +22,25 @@ export const fetchMovies = async ({ query }: {query: string}) =>    {
     if(!response.ok){
         throw new Error(`Failed to fetch movies ${response.statusText}`);
 
-    }
+    }   
 
-    const data = await response.json();
+    const res = await response.json();
 
-    return data.Search || [];
+    // const resDetail = await fetch(`${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&i=${res.Search[0].imdbID}`)
+
+    const data = res.Search
+
+    const dataDetails = await Promise.all(
+        data.map(async (movie: any) => {
+            const resDetail = await fetch(`${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&i=${movie.imdbID}`);
+            const details = await resDetail.json();
+            return details
+        })
+    );
+
+  
+
+
+    return {dataDetails, data};
 
 };

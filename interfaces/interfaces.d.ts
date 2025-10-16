@@ -16,7 +16,8 @@ interface Movie {
   Poster: string;
   Year: string;
   Runtime:string;
-}
+  Ratings: Rating[];
+};
 
 interface TrendingMovie {
   searchTerm: string;

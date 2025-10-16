@@ -1,13 +1,11 @@
-import { Text, View, Image, ScrollView, ActivityIndicator, FlatList } from "react-native";
-import { Link } from "expo-router";
-import { images } from "@/constants/images";
-import { icons } from "@/constants/icons";
-import SearchingBar from "@/components/SearchingBar";
-import { useRouter } from "expo-router";
-import { useEffect } from "react";
-import { fetchMovies, TMDB_CONFIG } from "@/services/api";
-import useFetch from "@/services/useFetch";
 import MovieCard from "@/components/MovieCard";
+import SearchingBar from "@/components/SearchingBar";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { fetchMovies } from "@/services/api";
+import useFetch from "@/services/useFetch";
+import { useRouter } from "expo-router";
+import { ActivityIndicator, FlatList, Image, ScrollView, Text, View } from "react-native";
 
 
 
@@ -16,7 +14,8 @@ export default function Index() {
   const router = useRouter();
 
   const {
-    data: movies, 
+    data: movies,
+    dataDetails: details,
     loading: moviesLoading, 
     error: moviesError } = useFetch(() => fetchMovies({
     query: ''}
@@ -24,10 +23,18 @@ export default function Index() {
 
 //   useEffect(() => {
 //   (async () => {
-//     const data = await fetchMovies({ query: 'Inception' });
-//     console.log(data[0].Title);
+//     const data = await fetchMovies({ query: 'How' });
+//     console.log(data);
 //   })();
 // }, []);
+//console.log(details)
+
+ const fullMovies = movies?.map((movie: any, index: number) => ({
+    ...movie,
+     Ratings: details?.[index].Ratings,
+     Plot: details?.[index].Plot,
+     Director: details?.[index].Director,
+  })) || [];
 
 
   return (
@@ -55,7 +62,7 @@ export default function Index() {
                 <Text className="text-lg text-white font-bold mt-5 mb-3">Latest movies</Text>
 
                 <FlatList 
-                  data={movies}
+                  data={fullMovies}
                   renderItem={({item}) => (
                     <MovieCard 
                       {... item}
