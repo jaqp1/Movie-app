@@ -1,5 +1,4 @@
 import MovieCard from "@/components/MovieCard";
-import SearchingBar from "@/components/SearchingBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
@@ -35,7 +34,7 @@ export default function Index() {
      Plot: details?.[index].Plot,
      Director: details?.[index].Director,
   })) || [];
-
+ 
 
   return (
     <View className="flex-1 bg-primary">
@@ -54,10 +53,12 @@ export default function Index() {
             <Text>Error: {moviesError.message}</Text>
           ) : (
             <View className="flex-1 mt-5">
-              <SearchingBar 
-                onPress={() => router.push("/search")}
-                placeholder="Search for a movie"
-              />
+              {/* <SearchingBar 
+                  onPress={() => router.push("/search")}
+                  placeholder="Search for a movie" value={""} 
+                   onChangeText={function (text: string): void {
+                    throw new Error("Function not implemented.");
+                  } }              /> */}
               <>
                 <Text className="text-lg text-white font-bold mt-5 mb-3">Latest movies</Text>
 

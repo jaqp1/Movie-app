@@ -17,6 +17,7 @@ interface Movie {
   Year: string;
   Runtime:string;
   Ratings: Rating[];
+  Released: string;
 };
 
 interface TrendingMovie {

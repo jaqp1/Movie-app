@@ -7,7 +7,7 @@ type FetchResult<DataType, DetailsType> = {
 };
 
 const useFetch = <DataType, DetailsType>(fetchFunction: () => Promise<FetchResult<DataType, DetailsType>>, autoFetch = true) => {
-    const [data, setData] = useState<DataType | null>(null);
+    const [data, setData] = useState<DataType | null | []>([]);
     const [dataDetails, setDataDetails] = useState<DetailsType | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
@@ -31,7 +31,7 @@ const useFetch = <DataType, DetailsType>(fetchFunction: () => Promise<FetchResul
     }
 
     const reset = () => {
-        setData(null);
+        setData([] as DataType);
         setDataDetails(null)
         setLoading(false);
         setError(null);

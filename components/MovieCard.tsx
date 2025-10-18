@@ -5,7 +5,7 @@ import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const MovieCard = ({Title,imdbID,Poster,Year,Runtime, Ratings}: Movie) => {
 
-  //console.log("Ratings:", Ratings); 
+  //console.log(Year); 
 
   return (
     <Link href={`/movies/${imdbID}`} asChild> 
@@ -14,16 +14,19 @@ const MovieCard = ({Title,imdbID,Poster,Year,Runtime, Ratings}: Movie) => {
                 source={{
                 uri: Poster
                 ? `${Poster}`
-                : 'https://placeholder.co/600x400/1a1a1a/ffffff.png'
+                : "@/assets/images/unavailable.png"
                 }}
                 className='w-full h-52 rounded-lg'
                 resizeMode='cover'
             />
-            <Text className='text-sm font-bold text-white mt-2'>{Title}</Text>
+            <Text className='text-sm font-bold text-white mt-2' numberOfLines={1}>{Title}</Text>
 
             <View className="flex-row items-center justify-start gap-x-1">
-                <Image source={icons.star} className='size-4'/>
+                <Image source={icons?.star} className='size-4'/>
                   <Text className='text-xs text-white font-bold uppercase'>{parseInt(Ratings?.[0]?.Value,10)/2 || "-"}</Text>
+            </View>
+            <View className="flex-row items-center justify-between">
+              <Text className='text-xs text-light-300 font-bold uppercase'>{Year}</Text>
             </View>
         </TouchableOpacity>
     </Link>
