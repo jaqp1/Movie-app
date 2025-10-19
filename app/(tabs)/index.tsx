@@ -26,7 +26,8 @@ export default function Index() {
 //     console.log(data);
 //   })();
 // }, []);
-//console.log(details)
+
+
 
  const fullMovies = movies?.map((movie: any, index: number) => ({
     ...movie,

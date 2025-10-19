@@ -71,10 +71,12 @@ const Search = () => {
                 <ActivityIndicator size="large" color="#0000ff" className='my-3'/>
             )} 
             {moviesError && (
-              <Text className="text-red-500 px-5 my-3">
-                Error: {moviesError.message}
-              </Text>
-            )}
+                <Text className='text-xl text-white font-bold'>
+                  No Search Results for{' '}
+                <Text className="text-accent">{searchQuery}</Text>
+                </Text>
+            ) && (console.log('Error:', movies.error))
+            }
 
             {!moviesLoading && !moviesError && searchQuery.trim() && movies?.length > 0 && (
               <Text className='text-xl text-white font-bold'>

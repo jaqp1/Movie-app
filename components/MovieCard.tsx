@@ -1,23 +1,25 @@
 import { icons } from '@/constants/icons'
 import { Link } from 'expo-router'
-import React from 'react'
+import React, { useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const MovieCard = ({Title,imdbID,Poster,Year,Runtime, Ratings}: Movie) => {
 
-  //console.log(Year); 
+
+  const [error, setError] = useState(false);
 
   return (
     <Link href={`/movies/${imdbID}`} asChild> 
         <TouchableOpacity className="w-[30%]">
             <Image
-                source={{
-                uri: Poster
-                ? `${Poster}`
-                : "@/assets/images/unavailable.png"
-                }}
+                source={
+                Poster && !error && Poster !== "N/A"
+                ? {uri: Poster}
+                : require('../assets/images/unavailable.png')  
+                }
                 className='w-full h-52 rounded-lg'
                 resizeMode='cover'
+                onError={() => setError(true)}
             />
             <Text className='text-sm font-bold text-white mt-2' numberOfLines={1}>{Title}</Text>
 
