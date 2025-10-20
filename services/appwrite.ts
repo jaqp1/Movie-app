@@ -2,6 +2,7 @@
  
 import { Client, Databases, ID, Query } from 'react-native-appwrite';
 
+
 const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!;
 const COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID!;
 
@@ -10,6 +11,12 @@ const client = new Client()
     .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!)
 
 const database = new Databases(client);
+
+
+type FetchResult<DataType, DetailsType> = {
+  data: DataType;
+  dataDetails: DetailsType;
+};
 
 export const updateSearchCount = async (query: string, movie: Movie) => {
     
@@ -49,4 +56,19 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
         //create a new document in Appwrite database -> 1
         //console.log(movie.imdbID)
         
+}
+
+export const getTrendingMovies = async(): Promise<FetchResult<TrendingMovie[], unknown>> => {
+    try {
+        const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
+            Query.limit(5),
+            Query.orderAsc('count'),
+        ])
+
+        return { data: result.documents as unknown as TrendingMovie[], dataDetails: undefined };
+    } catch (error){
+        console.log(error);
+        return { data: [], dataDetails: (error as Error).message ?? String(error) };
+    }
+
 }
