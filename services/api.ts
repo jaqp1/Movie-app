@@ -12,7 +12,7 @@ export const fetchMovies = async ({ query }: {query: string}) =>    {
     const endpoint = query 
     ? `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&s=${encodeURIComponent(query)}`
     : `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&s=How`;
-
+ 
     const response = await fetch(endpoint, {
         method: 'GET',
         headers: TMDB_CONFIG.headers,
