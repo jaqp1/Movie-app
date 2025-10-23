@@ -1,3 +1,4 @@
+
 export const TMDB_CONFIG = {
     BASE_URL: 'http://www.omdbapi.com',
     API_KEY: process.env.EXPO_PUBLIC_MOVIE_API_KEY,
@@ -5,6 +6,31 @@ export const TMDB_CONFIG = {
         accept: 'application/json'
     }
 }
+
+export const fetchMovieDetails = async ({ id }: {id: string}) => {
+    
+    const endpoint = id
+    ? `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&i=${id}`
+    : `${TMDB_CONFIG.BASE_URL}/?apikey=${TMDB_CONFIG.API_KEY}&i=tt1375666`
+
+    const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: TMDB_CONFIG.headers,
+    });
+
+    if(!response.ok){
+        throw new Error(`Failed to fetch movies ${response.statusText}`);
+    }
+
+    const rest = await response.json()
+    
+    const data = rest.Search
+
+    return data;
+
+}
+
+
 
 
 export const fetchMovies = async ({ query }: {query: string}) =>    {

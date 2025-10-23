@@ -80,7 +80,7 @@ export default function Index() {
               <>
                 
 
-                <FlatList 
+                <FlatList  
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   ItemSeparatorComponent={() => <View className="w-4 " />}
@@ -99,6 +99,7 @@ export default function Index() {
                   renderItem={({item}) => (
                     <MovieCard 
                       {... item}
+                      movies={fullMovies}
                     />
                   )}
                   keyExtractor={(item) => item.imdbID.toString()}

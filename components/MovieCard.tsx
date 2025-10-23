@@ -8,8 +8,15 @@ const MovieCard = ({Title,imdbID,Poster,Year,Runtime, Ratings}: Movie) => {
 
   const [error, setError] = useState(false);
 
+
   return (
-    <Link href={`/movies/${imdbID}`} asChild> 
+    <Link 
+      href={{
+        pathname: `/movies/[id]`,
+        params: {id: imdbID}
+      }}
+      asChild
+      > 
         <TouchableOpacity className="w-[30%]">
             <Image
                 source={
