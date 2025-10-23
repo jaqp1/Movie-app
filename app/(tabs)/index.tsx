@@ -31,7 +31,7 @@ export default function Index() {
 
 //   useEffect(() => {
 //   (async () => {
-//     const data = await fetchMovies({ query: 'How' });
+//     const data = await fetchMovieDetails({ id: 'tt1375666' });
 //     console.log(data);
 //   })();
 // }, []);

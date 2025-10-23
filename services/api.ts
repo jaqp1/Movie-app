@@ -22,11 +22,9 @@ export const fetchMovieDetails = async ({ id }: {id: string}) => {
         throw new Error(`Failed to fetch movies ${response.statusText}`);
     }
 
-    const rest = await response.json()
-    
-    const data = rest.Search
+    const data = await response.json()
 
-    return data;
+    return {data};
 
 }
 

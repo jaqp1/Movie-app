@@ -5,8 +5,8 @@ type ApiResponse<T> = {
 };
 
 
-const useFetch = <DataType>(fetchFunction: () => Promise<ApiResponse<DataType>>, autoFetch = true) => {
-    const [data, setData] = useState<DataType | null | []>([]);
+const useFetchDetails = <DataType>(fetchFunction: () => Promise<ApiResponse<DataType>>, autoFetch = true) => {
+    const [data, setData] = useState<DataType | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -28,7 +28,7 @@ const useFetch = <DataType>(fetchFunction: () => Promise<ApiResponse<DataType>>,
     }
 
     const reset = () => {
-        setData([] as DataType);
+        setData(null);
         setLoading(false);
         setError(null);
     }
@@ -44,4 +44,4 @@ const useFetch = <DataType>(fetchFunction: () => Promise<ApiResponse<DataType>>,
     return {data, loading, error, refetch: fetchData, reset};
 }
 
-export default useFetch;
+export default useFetchDetails;
