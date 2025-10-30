@@ -1,10 +1,26 @@
 import { icons } from '@/constants/icons'
 import { fetchMovieDetails } from '@/services/api'
 import useFetchDetails from '@/services/useFetchDetails'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+
+interface MovieInfoProps {
+  label:string;
+  value?: string | number | null;
+}
+
+const MovieInfo = ({label, value }: MovieInfoProps) => (
+  <View className='flex-col items-start justify-center mt-5'>
+    <Text className='text-light-200 font-normal text-sm'>
+      {label}
+    </Text>
+    <Text className='text-light-100 font-bold text-sm mt-2'>
+      {value || 'N/A'}
+    </Text>
+  </View>
+)
 
 const MovieDetails = () => {
 
@@ -17,7 +33,7 @@ const MovieDetails = () => {
     loading: moviesLoading, 
     error: moviesError } = useFetchDetails(() => fetchMovieDetails({id: idOnce}))
 
-  console.log(movie)
+  //console.log(movie)
 
 //       useEffect(() => {
 //   (async () => {
@@ -53,13 +69,30 @@ const MovieDetails = () => {
             <Text className='text-white font-bold text-sm'>
               {`${parseInt(movie?.imdbRating,10)/2}/10` || "-"}
             </Text>
+            <Text className='text-light-200 text-sm'> 
+              {` (${movie?.imdbVotes}) votes`}
+            </Text>
 
           </View>
+          <MovieInfo label="Overview" value={movie?.Plot} />
+          <MovieInfo 
+            label="Genres" 
+            value={movie?.Genre.replace(/, /g,' - ')} />
+          <View className='flex flex-row justify-between w-1/2'>
+            <MovieInfo 
+              label='Box Office' 
+              value={`$${parseInt(movie?.BoxOffice.slice(1),10)} million`} />
+              <MovieInfo label='Rated' value={movie?.Rated} />
+          </View>
+          <MovieInfo label='Avards' value={movie?.Awards} />
+           <MovieInfo label='DIrectors' value={movie?.Director} />
         </View>
-
-
-        
       </ScrollView>
+      <TouchableOpacity className='absolute bottom-5 left-0 right-0 mx-5 bg-accent rounded-lg py-3.5 flex flex-row items-center justify-center z-50' onPress={router.back}>
+            <Image source={icons.arrow} className='size-5 mr-1 mt-0.5 rotate-180' tintColor="#FFF"/>
+            <Text className='text-white font-semibold text-base'>Go back</Text>
+      </TouchableOpacity>
+      
     </View>
   )
 }
