@@ -1,8 +1,9 @@
 import { icons } from '@/constants/icons'
 import { fetchMovieDetails } from '@/services/api'
+import { checkIfSaved, deleteSavedMovie, updateSavedMovies } from '@/services/appwrite'
 import useFetchDetails from '@/services/useFetchDetails'
 import { router, useLocalSearchParams } from 'expo-router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
@@ -24,6 +25,8 @@ const MovieInfo = ({label, value }: MovieInfoProps) => (
 
 const MovieDetails = () => {
 
+  const [saved, setSaved] = useState(false);
+
   const { id } = useLocalSearchParams(); 
 
   const idOnce = id.toString();
@@ -41,6 +44,28 @@ const MovieDetails = () => {
 //     console.log(data);
 //   })();
 // }, []);
+    useEffect(() => {
+      const check = async () => {
+        if(!movie) return;
+        const ifSaved = await checkIfSaved(movie);
+        setSaved(ifSaved)
+      };
+
+      check();
+    }, [movie])
+
+    const handleSave = () =>  {
+      if(!saved){
+        setSaved(!saved);
+        updateSavedMovies(movie);
+      }else{
+        setSaved(!saved);
+        deleteSavedMovie(movie)
+      }
+      
+    }
+
+
 
   return (
     <View className='bg-primary flex-1'>
@@ -56,8 +81,18 @@ const MovieDetails = () => {
           : <Text>Loading...</Text>}
         </View>
         <View className='flex-col items-start justify-center mt-5 px-5'>
-          <Text className="text-white font-bold text-xl">{movie?.Title}</Text>
-          <View className='flex-row items-center gap-x-1 mt-2'>
+            <Text className="text-white font-bold text-xl">{movie?.Title}</Text>
+            <TouchableOpacity onPress={handleSave}>
+              <Image 
+              source={saved
+                ?icons?.save_filled
+                :icons?.save
+              } 
+              className='absolute left-96 bottom-1 size-6 z-10'
+              /> 
+            </TouchableOpacity>
+          
+          <View className='flex-row items-center gap-x-1 mt-4'>
             <Text className='text-light-200 text-sm'>{movie?.Year}</Text>
             <Text className='text-light-200 test-sm'>{movie?.Runtime}</Text>
           </View>

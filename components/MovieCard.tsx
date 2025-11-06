@@ -24,10 +24,11 @@ const MovieCard = ({Title,imdbID,Poster,Year,Runtime, Ratings}: Movie) => {
                 ? {uri: Poster}
                 : require('../assets/images/unavailable.png')  
                 }
-                className='w-full h-52 rounded-lg'
+                className='w-full h-52 rounded-lg z-0'
                 resizeMode='cover'
                 onError={() => setError(true)}
             />
+            <Image source={icons?.save} className='absolute left-24 top-60 size-6 z-10' /> 
             <Text className='text-sm font-bold text-white mt-2' numberOfLines={1}>{Title}</Text>
 
             <View className="flex-row items-center justify-start gap-x-1">

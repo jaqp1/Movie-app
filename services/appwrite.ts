@@ -5,6 +5,7 @@ import { Client, Databases, ID, Query } from 'react-native-appwrite';
 
 const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!;
 const COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID!;
+const SAVED_MOVIES_ID = process.env.EXPO_PUBLIC_APPWRITE_SAVED_ID!;
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
@@ -58,6 +59,31 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
         
 }
 
+export const updateSavedMovies = async (movie: Movie) => {
+    
+    try{
+        const result = await database.listDocuments(DATABASE_ID, SAVED_MOVIES_ID, [
+            Query.equal('movie_id', movie.imdbID)
+        ])
+        if(result.documents.length === 0){
+            await database.createDocument(DATABASE_ID, SAVED_MOVIES_ID, ID.unique(), {
+        title: movie.Title,
+        poster_url: movie.Poster,
+        movie_id: movie.imdbID
+        })
+        console.log("Dodaono nowy ulubiony film")
+        }else{
+            console.log("Ten film został już dodany do listy ulobionych")
+        }
+        
+        } catch (error){
+            console.log(error);
+            
+            throw error;
+        }
+}
+
+
 export const getTrendingMovies = async(): Promise<FetchResult<TrendingMovie[], unknown>> => {
     try {
         const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
@@ -72,3 +98,35 @@ export const getTrendingMovies = async(): Promise<FetchResult<TrendingMovie[], u
     }
 
 }
+
+export const deleteSavedMovie = async (movie: Movie) => {
+
+    const result = await database.listDocuments(DATABASE_ID, SAVED_MOVIES_ID, [
+            Query.equal('movie_id', movie.imdbID)
+        ])
+    try{
+        if(result.documents.length > 0){
+            await database.deleteDocument(DATABASE_ID, SAVED_MOVIES_ID, result.documents[0].$id)
+        }
+        console.log("Pomyślnie usunięto film z ulubionych")
+    } catch (error){
+        console.log(error, "Usuwanie z ulubionych zakończone niepowodzeniem");
+        throw error;
+    }
+}
+
+export const checkIfSaved = async (movie: Movie) => {
+    let saved = false
+    const result = await database.listDocuments(DATABASE_ID, SAVED_MOVIES_ID, [
+    Query.equal('movie_id', movie.imdbID)
+    ])
+    if(result.documents.length > 0){
+        saved = true
+        return saved
+    }else{
+        
+        return saved
+    }
+}
+   
+
