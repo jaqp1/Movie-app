@@ -31,8 +31,8 @@ Aby uruchomić projekt lokalnie, wykonaj poniższe kroki:
 
 1.  **Sklonuj repozytorium:**
     ```bash
-    git clone [https://github.com/twoj-nick/movie-browser-app.git](https://github.com/twoj-nick/movie-browser-app.git)
-    cd movie-browser-app
+    git clone https://github.com/jaqp1/Movie-app.git
+    cd first-app
     ```
 
 2.  **Zainstaluj zależności:**
