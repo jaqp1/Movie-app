@@ -1,70 +1,69 @@
 # 🎬 Movie Browser App
 
-Nowoczesna aplikacja mobilna (Android) do przeglądania i wyszukiwania filmów. Aplikacja oferuje dostęp do ogromnej bazy danych filmowych, system rekomendacji oparty na trendach oraz możliwość tworzenia własnej listy ulubionych produkcji.
+A modern mobile application (Android) for browsing and searching for movies. The app offers access to an extensive movie database, a recommendation system based on trends, and the ability to create your own list of favorite productions.
 
-## 📱 Zrzuty ekranu
+## 📱 Screenshots
 
- <img width="250" alt="Zrzut ekranu 2025-12-04 201154" src="https://github.com/user-attachments/assets/2cac7f7c-43bc-4ba6-9327-f61ebda81467" />  <img width="250" alt="Zrzut ekranu 2025-12-04 201315" src="https://github.com/user-attachments/assets/bb84057c-2aac-48a5-803f-d7c0a81685eb" /> <img width="250" alt="Zrzut ekranu 2025-12-04 201333" src="https://github.com/user-attachments/assets/3d0ce383-0670-4741-8595-ec0c98875419" /> 
-## ✨ Funkcjonalności
+ <img width="250" alt="Screenshot 2025-12-04 201154" src="https://github.com/user-attachments/assets/2cac7f7c-43bc-4ba6-9327-f61ebda81467" />  <img width="250" alt="Screenshot 2025-12-04 201315" src="https://github.com/user-attachments/assets/bb84057c-2aac-48a5-803f-d7c0a81685eb" /> <img width="250" alt="Screenshot 2025-12-04 201333" src="https://github.com/user-attachments/assets/3d0ce383-0670-4741-8595-ec0c98875419" /> 
+## ✨ Features
 
- **🔍 Wyszukiwanie Filmów:** Integracja z zewnętrznym **OMDb API** pozwala na błyskawiczne znajdowanie informacji o filmach, w tym plakatów, opisów, obsady i ocen.<br>
- **🔥 Sekcja "Trending":** Na stronie głównej wyświetlane są filmy, które są najczęściej wyszukiwane przez użytkowników. Logika ta oparta jest o zliczanie zapytań w bazie danych. <br>
- **❤️ Ulubione:** Możliwość dodawania filmów do prywatnej listy ulubionych ("Saved"), aby mieć do nich szybki dostęp. <br>
- **📄 Szczegółowe Informacje:** Pełen podgląd detali filmu, w tym rok produkcji, gatunek, oceny (Star Rating) i opis fabuły. <br>
- **🎨 Nowoczesny UI:** Ciemny motyw (Dark Mode), intuicyjna nawigacja dolna i responsywne karty filmów. <br>
+ **🔍 Movie Search:** Integration with the external **OMDb API** allows for instant finding of movie information, including posters, descriptions, cast, and ratings.<br>
+ **🔥 "Trending" Section:** The home page displays movies that are most frequently searched by users. This logic is based on counting queries in the database. <br>
+ **❤️ Favorites:** Ability to add movies to a private list of favorites ("Saved") for quick access. <br>
+ **📄 Detailed Information:** Full view of movie details, including release year, genre, ratings (Star Rating), and plot summary. <br>
+ **🎨 Modern UI:** Dark Mode, intuitive bottom navigation, and responsive movie cards. <br>
 
 ## 🛠️ Tech Stack
 
-Projekt został zbudowany przy użyciu nowoczesnych technologii webowych i mobilnych:
+The project was built using modern web and mobile technologies:
 
 * **Frontend:** [React Native](https://reactnative.dev/) (Expo)
-* **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS dla React Native)
-* **Nawigacja:** React Router / Expo Router
-* **Baza Danych & Backend:** [Appwrite](https://appwrite.io/)
-    * Przechowywanie liczników wyszukiwań (dla sekcji Trending).
-    * Przechowywanie listy ulubionych filmów użytkownika.
-* **Dane zewnętrzne:** [OMDb API](https://www.omdbapi.com/)
+* **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
+* **Navigation:** React Router / Expo Router
+* **Database & Backend:** [Appwrite](https://appwrite.io/)
+    * Storing search counters (for the Trending section).
+    * Storing the user's list of favorite movies.
+* **External Data:** [OMDb API](https://www.omdbapi.com/)
 
-## 🚀 Instalacja i Uruchomienie
+## 🚀 Installation and Setup
 
-Aby uruchomić projekt lokalnie, wykonaj poniższe kroki:
+To run the project locally, follow the steps below:
 
-1.  **Sklonuj repozytorium:**
+1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/jaqp1/Movie-app.git
+    git clone [https://github.com/jaqp1/Movie-app.git](https://github.com/jaqp1/Movie-app.git)
     cd first-app
     ```
 
-2.  **Zainstaluj zależności:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Skonfiguruj zmienne środowiskowe:**
-    Stwórz plik `.env` w głównym katalogu i dodaj swoje klucze API:
+3.  **Configure environment variables:**
+    Create an `.env` file in the main directory and add your API keys:
     ```env
-    EXPO_PUBLIC_OMDB_API_KEY=twoj_klucz_omdb
-    EXPO_PUBLIC_APPWRITE_PROJECT_ID=twoj_project_id
-    EXPO_PUBLIC_APPWRITE_DATABASE_ID=twoj_database_id
-    EXPO_PUBLIC_APPWRITE_COLLECTION_ID=twoj_collection_id
-    EXPO_PUBLIC_APPWRITE_SAVED_ID=twoj_savedmovies_id
+    EXPO_PUBLIC_OMDB_API_KEY=your_omdb_key
+    EXPO_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
+    EXPO_PUBLIC_APPWRITE_DATABASE_ID=your_database_id
+    EXPO_PUBLIC_APPWRITE_COLLECTION_ID=your_collection_id
+    EXPO_PUBLIC_APPWRITE_SAVED_ID=your_savedmovies_id
     ```
 
-4.  **Uruchom aplikację:**
+4.  **Run the application:**
     ```bash
     npx expo start
     ```
-    Zeskanuj kod QR aplikacją Expo Go na swoim telefonie z Androidem lub uruchom emulator Android Studio.
+    Scan the QR code with the Expo Go app on your Android phone or run the Android Studio emulator.
 
-## 🗄️ Struktura Bazy Danych (Appwrite)
+## 🗄️ Database Structure (Appwrite)
 
-Aplikacja korzysta z następujących kolekcji w Appwrite:
+The application uses the following collections in Appwrite:
 
-1.  **Trending Movies:** Przechowuje informacje o wyszukiwanych filmach (`searchTerm`, `count`, `poster_url`, `movie_data`).
-2.  **Favorites:** Przechowuje filmy zapisane przez użytkownika.
+1.  **Trending Movies:** Stores information about searched movies (`searchTerm`, `count`, `poster_url`, `movie_data`).
+2.  **Favorites:** Stores movies saved by the user.
 
 ## Find me:
 
 * GitHub: [@jaqp1](https://github.com/jaqp1)
 * LinkedIn: [Jakub Wenek](www.linkedin.com/in/jakub-wenek-7b188b296)
-
