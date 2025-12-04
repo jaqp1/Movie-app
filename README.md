@@ -7,11 +7,11 @@ Nowoczesna aplikacja mobilna (Android) do przeglądania i wyszukiwania filmów. 
  <img width="250" alt="Zrzut ekranu 2025-12-04 201154" src="https://github.com/user-attachments/assets/2cac7f7c-43bc-4ba6-9327-f61ebda81467" />  <img width="250" alt="Zrzut ekranu 2025-12-04 201315" src="https://github.com/user-attachments/assets/bb84057c-2aac-48a5-803f-d7c0a81685eb" /> <img width="250" alt="Zrzut ekranu 2025-12-04 201333" src="https://github.com/user-attachments/assets/3d0ce383-0670-4741-8595-ec0c98875419" /> 
 ## ✨ Funkcjonalności
 
- **🔍 Wyszukiwanie Filmów:** Integracja z zewnętrznym **OMDb API** pozwala na błyskawiczne znajdowanie informacji o filmach, w tym plakatów, opisów, obsady i ocen.
- **🔥 Sekcja "Trending":** Na stronie głównej wyświetlane są filmy, które są najczęściej wyszukiwane przez użytkowników. Logika ta oparta jest o zliczanie zapytań w bazie danych.
- **❤️ Ulubione:** Możliwość dodawania filmów do prywatnej listy ulubionych ("Saved"), aby mieć do nich szybki dostęp.
- **📄 Szczegółowe Informacje:** Pełen podgląd detali filmu, w tym rok produkcji, gatunek, oceny (Star Rating) i opis fabuły.
- **🎨 Nowoczesny UI:** Ciemny motyw (Dark Mode), intuicyjna nawigacja dolna i responsywne karty filmów.
+ **🔍 Wyszukiwanie Filmów:** Integracja z zewnętrznym **OMDb API** pozwala na błyskawiczne znajdowanie informacji o filmach, w tym plakatów, opisów, obsady i ocen.<br>
+ **🔥 Sekcja "Trending":** Na stronie głównej wyświetlane są filmy, które są najczęściej wyszukiwane przez użytkowników. Logika ta oparta jest o zliczanie zapytań w bazie danych. <br>
+ **❤️ Ulubione:** Możliwość dodawania filmów do prywatnej listy ulubionych ("Saved"), aby mieć do nich szybki dostęp. <br>
+ **📄 Szczegółowe Informacje:** Pełen podgląd detali filmu, w tym rok produkcji, gatunek, oceny (Star Rating) i opis fabuły. <br>
+ **🎨 Nowoczesny UI:** Ciemny motyw (Dark Mode), intuicyjna nawigacja dolna i responsywne karty filmów. <br>
 
 ## 🛠️ Tech Stack
 
