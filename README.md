@@ -4,7 +4,7 @@ Nowoczesna aplikacja mobilna (Android) do przeglądania i wyszukiwania filmów. 
 
 ## 📱 Zrzuty ekranu
 
- <img width="300" alt="Zrzut ekranu 2025-12-04 201154" src="https://github.com/user-attachments/assets/2cac7f7c-43bc-4ba6-9327-f61ebda81467" />  <img width="300" alt="Zrzut ekranu 2025-12-04 201315" src="https://github.com/user-attachments/assets/bb84057c-2aac-48a5-803f-d7c0a81685eb" /> <img width="300" alt="Zrzut ekranu 2025-12-04 201333" src="https://github.com/user-attachments/assets/3d0ce383-0670-4741-8595-ec0c98875419" /> 
+ <img width="250" alt="Zrzut ekranu 2025-12-04 201154" src="https://github.com/user-attachments/assets/2cac7f7c-43bc-4ba6-9327-f61ebda81467" />  <img width="250" alt="Zrzut ekranu 2025-12-04 201315" src="https://github.com/user-attachments/assets/bb84057c-2aac-48a5-803f-d7c0a81685eb" /> <img width="250" alt="Zrzut ekranu 2025-12-04 201333" src="https://github.com/user-attachments/assets/3d0ce383-0670-4741-8595-ec0c98875419" /> 
 ## ✨ Funkcjonalności
 
  **🔍 Wyszukiwanie Filmów:** Integracja z zewnętrznym **OMDb API** pozwala na błyskawiczne znajdowanie informacji o filmach, w tym plakatów, opisów, obsady i ocen.
